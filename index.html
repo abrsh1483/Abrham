@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>ጣና የጥርስ ህክምና | Tana Dental Treatment – ባህር ዳር</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="main-header">
+    <div class="logo-container">
+        <div class="logo-icon">🦷</div>
+        <div class="clinic-name">
+            <h2>ጣና የጥርስ ህክምና</h2>
+            <span class="subtitle">Tana Dental Treatment</span>
+        </div>
+    </div>
+    <div class="lang-buttons">
+        <button class="lang-btn active" data-lang="am">አማርኛ</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button id="menuToggle" class="menu-icon">☰</button>
+    </div>
+</div>
+
+<div id="sideMenu" class="sidebar">
+    <div class="sidebar-header">
+        <strong>📌 ሜኑ / Menu</strong>
+        <button id="closeSidebarBtn" class="close-sidebar">✖</button>
+    </div>
+    <div class="nav-item" data-page="home">🏠 መነሻ / Home</div>
+    <div class="nav-item" data-page="booking">📅 ቀጠሮ ይያዙ / Book</div>
+    <div class="nav-item" data-page="myappointments">📋 ቀጠሮዎቼ / My Appointments</div>
+    <div class="nav-item" data-page="doctors">👨‍⚕️ ዶክተሮች / Doctors</div>
+    <div class="nav-item" data-page="admin">🔐 አድሚን / Admin</div>
+    <div class="nav-item" data-page="doctorportal">📱 የዶክተር መርጃ / Portal</div>
+    <div class="nav-item" data-page="about">📖 ስለ ክሊኒኩ / About</div>
+</div>
+<div id="overlayBg" class="overlay"></div>
+
+<div class="main-container">
+    <!-- HOME PAGE -->
+    <div id="homePage" class="page active-page">
+        <div class="hero">
+            <h1 data-key="hero_title">ጣና የጥርስ ህክምና</h1>
+            <p data-key="hero_slogan"><strong>ለሚያምር ፈጥጥታዎ ታማኝ አጋር!</strong></p>
+            <p data-key="hero_desc">በባህር ዳር ጥራት ያለው አገልግሎት እንሰጣለን።</p>
+        </div>
+        <div class="info-bar">
+            <span class="badge">⏰ <span id="workingHoursDisplay" data-key="working_hours_text">የስራ ሰዓት: ከሰኞ-ቅዳሜ 2:00 እስከ 12:00 | እሁድ 3:00 እስከ 10:00</span></span>
+        </div>
+        <div class="equipment-section">
+            <h3 data-key="equipment_title">🩺 የጥርስ መሳሪያዎች / Dental Equipment</h3>
+            <div class="marquee-home">
+                <div class="marquee-content">
+                    <img src="https://picsum.photos/id/20/150/150" alt="equipment">
+                    <img src="https://picsum.photos/id/28/150/150" alt="equipment">
+                    <img src="https://picsum.photos/id/104/150/150" alt="equipment">
+                    <img src="https://picsum.photos/id/183/150/150" alt="equipment">
+                    <img src="https://picsum.photos/id/29/150/150" alt="equipment">
+                    <img src="https://picsum.photos/id/38/150/150" alt="equipment">
+                    <img src="https://picsum.photos/id/20/150/150" alt="equipment">
+                    <img src="https://picsum.photos/id/28/150/150" alt="equipment">
+                </div>
+            </div>
+        </div>
+        <!-- FOOTER ONLY ON HOMEPAGE -->
+        <div class="footer-home">
+            <p data-key="footer_address">📍 ባህር ዳር, ኢትዮጵያ | 📞 +251-912-345678 | ✉️ info@tanadental.com</p>
+            <div class="social-links" id="footerSocialLinks">
+                <a href="#" target="_blank" data-key="telegram">📱 ቴሌግራም</a>
+                <a href="#" target="_blank" data-key="tiktok">🎵 ቲክቶክ</a>
+                <a href="#" target="_blank" data-key="youtube">▶️ ዩቲዩብ</a>
+            </div>
+            <p data-key="copyright">© 2025 Tana Dental Treatment</p>
+        </div>
+    </div>
+
+    <!-- BOOKING PAGE -->
+    <div id="bookingPage" class="page">
+        <div class="card">
+            <h2 data-key="booking_title">📝 አዲስ ቀጠሮ + አገልግሎቶች</h2>
+            <div id="bookMsg" style="display:none;" class="badge"></div>
+            <form id="bookingForm">
+                <div class="form-group"><label data-key="fullname">ሙሉ ስም</label><input type="text" id="fullName" required></div>
+                <div class="form-group"><label data-key="phone">ስልክ (10 አሃዝ) ግዴታ</label><input type="tel" id="phoneNum" maxlength="10" pattern="\d{10}" placeholder="0912345678" required></div>
+                <div class="form-group"><label data-key="fingerprint">🖐️ የጣት አሻራ ኮድ (ግዴታ)</label><input type="text" id="fingerCode" required placeholder="ልዩ ቁጥር (እንደ የግል መለያ)"></div>
+                <div class="form-group">
+                    <label data-key="photo_label">📸 ፎቶ (ካሜራ ወይም ፋይል) - ግዴታ</label>
+                    <div class="camera-box">
+                        <video id="cameraVideo" autoplay style="display:none; width:100%; border-radius:20px;"></video>
+                        <canvas id="canvasPhoto" style="display:none;"></canvas>
+                        <img id="photoPreview" style="display:none; width:100%; max-width:200px; border-radius:20px;">
+                        <div class="flex-row">
+                            <button type="button" id="startCameraBtn" class="secondary" data-key="camera_open">📷 ካሜራ ክፈት</button>
+                            <button type="button" id="takePhotoBtn" data-key="take_photo">🎬 ፎቶ አንሳ</button>
+                            <label style="background:#6c757d; color:white; padding:12px; border-radius:40px; cursor:pointer;" data-key="choose_file">📁 ፋይል ምረጥ <input type="file" id="fileUpload" accept="image/*" style="display:none;"></label>
+                        </div>
+                        <input type="hidden" id="photoData" required>
+                    </div>
+                </div>
+                <div class="form-group"><label data-key="app_date">ቀን</label><input type="date" id="appointmentDate" required></div>
+                <div class="form-group"><label data-key="time_slot">ሰዓት</label><select id="timeSlotSelect" required></select></div>
+                <div class="form-group">
+                    <label data-key="select_branch">ቅርንጫፍ ይምረጡ / Select Branch</label>
+                    <select id="branchSelect" required></select>
+                </div>
+                <div id="assignedDoctorDisplay" class="assigned-doctor-info">
+                    <span data-key="assigned_doctor_label">የሚመደበው ዶክተር / Assigned Doctor:</span> <strong id="assignedDoctorName">-</strong>
+                </div>
+                <div class="form-group">
+                    <label data-key="services_label">🛒 አገልግሎቶች (ከዚህ ይምረጡ)</label>
+                    <div id="serviceCheckboxes" class="flex-row"></div>
+                    <div id="selectedServicesTotal" class="badge" style="margin-top:8px;" data-key="total">ጠቅላላ: 0 ETB</div>
+                    <input type="hidden" id="selectedServicesJSON" value="[]">
+                </div>
+                <div class="form-group">
+                    <label data-key="payment_method">💸 የክፍያ ዘዴ / Payment Method</label>
+                    <select id="paymentMethodSelect" required>
+                        <option value="" data-key="select_method">-- ይምረጡ / Select --</option>
+                        <option value="Telebirr">📱 ቴሌብር / Telebirr</option>
+                        <option value="CBEBirr">🏦 ሲቢኢ ብር / CBEBirr</option>
+                        <option value="Amole">💳 አሞሌ / Amole</option>
+                        <option value="Cash">💰 ጥሬ ገንዘብ / Cash</option>
+                        <option value="Bank Transfer">🏛️ የባንክ ዝውውር / Bank Transfer</option>
+                    </select>
+                    <div class="form-group" style="margin-top:8px;" id="paymentAccountGroup">
+                        <label data-key="payment_account">📞 የክፍያ ስልክ / አካውንት ቁጥር</label>
+                        <input type="text" id="paymentAccount" placeholder="ለምሳሌ 0912345678 / የቴሌብር ስልክ" required>
+                    </div>
+                    <button type="button" id="confirmPaymentBtn" style="margin-top:8px;" data-key="confirm_payment">💵 ክፍያ አረጋግጥ</button>
+                    <p id="paymentStatusText" style="font-size:0.8rem;" data-key="payment_pending">❌ ክፍያ አልተፈጸመም</p>
+                    <input type="hidden" id="paymentDone" value="false">
+                    <input type="hidden" id="selectedPaymentMethod" value="">
+                    <input type="hidden" id="paymentAccountValue" value="">
+                </div>
+                <button type="submit" id="submitBookingBtn" data-key="book_confirm">✅ ቀጠሮ ያረጋግጡ</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MY APPOINTMENTS -->
+    <div id="myappointmentsPage" class="page">
+        <div class="card">
+            <h2 data-key="my_appointments_title">📋 ቀጠሮዎቼን ይመልከቱ / My Appointments</h2>
+            <div class="form-group"><label data-key="enter_fingerprint">🖐️ የጣት አሻራ ኮድ ያስገቡ</label><input type="text" id="fingerprintSearch" placeholder="ቀጠሮ ሲያስያዙ የጻፉት አሻራ"></div>
+            <button id="searchByFingerprintBtn" class="secondary" data-key="search_btn">🔍 ፈልግ / Search</button>
+            <button id="patientLogoutBtn" class="danger" style="margin-top:10px; display:none;" data-key="logout_btn">🚪 ውጣ / Logout</button>
+            <div id="myAppointmentsList" style="margin-top:20px;"></div>
+        </div>
+    </div>
+
+    <!-- DOCTORS LIST (public) -->
+    <div id="doctorsPage" class="page"><div class="card"><h2 data-key="our_doctors">👨‍⚕️ ዶክተሮቻችን</h2><div id="doctorsContainer"></div></div></div>
+
+    <!-- ADMIN PANEL -->
+    <div id="adminPage" class="page"><div class="card"><h2 data-key="admin_panel">🔐 አድሚን ፓነል</h2><button id="adminLoginBtn" class="secondary" data-key="admin_login">🔑 ግባ</button>
+    <div id="adminArea" style="display:none;">
+        <div class="form-group"><label data-key="add_doctor">➕ አዲስ ዶክተር (ስልክ ብቻ እንዲለይ)</label><div class="flex-row"><input id="newDocName" placeholder="ስም"><input id="newDocSpecial" placeholder="ስፔሻሊቲ"><input id="newDocPhone" placeholder="ስልክ"><input id="newDocBank" placeholder="ባንክ አካውንት"><input type="password" id="newDocPass" placeholder="ይለፍ ቃል"><input type="file" id="newDocPhoto"><button id="addDoctorAdmin" data-key="add_btn">➕ ጨምር</button></div></div>
+        <div class="form-group"><label data-key="change_admin_pass">🔑 አድሚን ይለፍ ቃል መቀየር</label><div class="flex-row"><input type="password" id="newAdminPass" placeholder="አዲስ ይለፍ ቃል"><button id="changeAdminPassBtn" data-key="change_btn">ለውጥ</button></div></div>
+        <div class="form-group"><label data-key="add_news">📢 አዲስ ዜና / ማስታወቂያ</label><div class="flex-row"><input type="text" id="newsTitle" placeholder="ርዕስ / Title"><textarea id="newsContent" rows="2" placeholder="ዝርዝር / Content" style="border-radius:20px;"></textarea><button id="addNewsBtn" data-key="add_news_btn">➕ ዜና ጨምር</button></div></div>
+        <div class="branch-admin-section">
+            <h3 data-key="branch_management">🏢 ቅርንጫፍ አስተዳደር / Branch Management</h3>
+            <div class="flex-row"><input type="text" id="newBranchName" placeholder="ቅርንጫፍ ስም"><input type="text" id="newBranchLocation" placeholder="አካባቢ"><button id="addBranchBtn" data-key="add_branch">➕ ቅርንጫፍ ጨምር</button></div>
+            <div id="branchesAdminList" style="margin-top:15px;"></div>
+        </div>
+        <h3 data-key="all_doctors_info">👨‍⚕️ የሁሉም ዶክተሮች መረጃ</h3>
+        <div id="adminDoctorsList"></div>
+        <h3 data-key="all_appointments">ሁሉም ቀጠሮዎች</h3>
+        <div id="adminAppointmentsList"></div>
+        <button id="adminLogout" class="danger" data-key="logout">ውጣ</button>
+    </div></div></div>
+
+    <!-- DOCTOR PORTAL -->
+    <div id="doctorportalPage" class="page"><div class="card"><h2 data-key="doctor_portal_title">📱 የዶክተር መርጃ - ይግቡ</h2>
+    <div id="doctorLoginArea" class="doctor-login-area">
+        <div class="form-group"><label data-key="secret_number_label">🔑 ሚስጥር ቁጥር / Secret Number (ይለፍ ቃል)</label><input type="password" id="doctorLoginPass" placeholder="በአድሚን የተሰጠው ሚስጥር ቁጥር"></div>
+        <button id="doctorLoginBtn" data-key="doctor_login_btn">🔐 ግባ / Login</button>
+        <div id="doctorLoginError" class="badge" style="display:none; background:#f8d7da; margin-top:10px;"></div>
+    </div>
+    <div id="doctorPrivateArea" style="display:none;">
+        <div id="loggedDoctorInfo"></div>
+        <button id="doctorLogoutBtn" class="danger" style="width:auto;" data-key="logout">ውጣ / Logout</button>
+        <hr>
+        <h3 data-key="edit_profile">✏️ የራሴን መረጃ አርትዕ / Edit My Profile</h3>
+        <div class="edit-profile-form">
+            <div class="form-group"><label data-key="fullname">ሙሉ ስም / Full Name</label><input type="text" id="editDocName"></div>
+            <div class="form-group"><label data-key="specialty">ስፔሻሊቲ / Specialty</label><input type="text" id="editDocSpecialty"></div>
+            <div class="form-group"><label data-key="phone">ስልክ / Phone (10 digits)</label><input type="text" id="editDocPhone" maxlength="10"></div>
+            <div class="form-group"><label data-key="bank_account">ባንክ አካውንት / Bank Account</label><input type="text" id="editDocBank"></div>
+            <div class="form-group"><label data-key="new_secret">🔄 አዲስ ሚስጥር ቁጥር (ይለፍ ቃል) / New Secret Number</label><input type="password" id="editDocPassword" placeholder="አዲስ ይለፍ ቃል ይምረጡ"></div>
+            <button id="saveDoctorProfileBtn" class="success" data-key="save_changes">💾 ማስቀመጫ / Save Changes</button>
+        </div>
+        <hr>
+        <h3 data-key="my_appointments_header">📋 የእኔ ቀጠሮዎች (ሚስጥር ቁጥር መቀየር ይቻላል)</h3>
+        <div id="doctorAppointmentsResult"></div>
+        <div id="smsAlertArea" style="background:#eef3fc; border-radius:24px; padding:12px; margin-top:12px;"><strong data-key="sms_notify">📨 የSMS ማሳወቂያ</strong><br><span id="smsLogSpan"></span></div>
+        <div id="availableDoctorsPanel" style="margin-top:20px; background:#e8f0fe; border-radius:20px; padding:12px;"><strong data-key="available_doctors_header">🩺 ክፍት ዶክተሮች / Available Doctors</strong><br><span id="availableDoctorsList"></span></div>
+    </div></div></div>
+
+    <!-- ABOUT PAGE -->
+    <div id="aboutPage" class="page">
+        <div class="card"><h2 data-key="about_title">📖 ስለ ክሊኒኩ / About Tana Dental</h2><p data-key="about_text">ጣና የጥርስ ህክምና በባህር ዳር ከፍተኛ ጥራት ያለው የጥርስ አገልግሎት ይሰጣል።</p>
+        <hr><h3 data-key="services_title">🦷 የምንሰጣቸው አገልግሎቶች</h3><div id="servicesDetailedList"></div>
+        <hr><h3 data-key="news_title">📢 ዜናዎች</h3><div id="newsListContainer"></div>
+        <hr><h3 data-key="contact_title">📞 አግኙን</h3><p data-key="contact_details">📍 ባህር ዳር, ኢትዮጵያ | 📞 +251-912-345678 | ✉️ info@tanadental.com</p><div class="social-links" id="aboutSocialLinks"></div>
+    </div></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
